@@ -48,9 +48,13 @@ if m:
     print(p5)
     print(p1+p2+p3+p5)"""
     
+   
 import re
 lines=open("C:\\Users\\lius39\\Documents\\Code\\test.txt",'r').readlines()
 flen=len(lines)
+p11=re.compile(r'(<div class=")(\w) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+)(">)')
+"""def func(m):
+    return m.group(1)+' '+m.group(2)+' '+m.group(3)+' '+m.group(4)+' '+m.group(4)+' '+m.group(6)+' '+m.group(7)+' '+m.group(8)+' '+m.group(9)+' '+m.group(10)+' '+m.group(11)+' '+m.group(12)+m.group(13)"""    
 for i in range(flen):
     for m in re.finditer('(<div class=["|\w|\s|\d]+>)([\s|\w\d]+)((</*span[\s|\w|=|_|"]*>[\s|\w|=]*)+)(</div>)', lines[i], re.S):
         p1=m.group(1)
@@ -58,7 +62,12 @@ for i in range(flen):
         p3=m.group(3)
         p4=m.group(4)
         p5=m.group(5)
-        print(p1+p2+p3+p5)
+        aa=re.search(p11,p1)
+        p6=aa.group(1)
+        print(p6)
+
+        
+        
         
         
         
