@@ -1,14 +1,14 @@
 import re
-tfile="C:\\Users\\liusi\\Documents\\Code\\pdf2htmlEX-win32-0.14.6-upx-with-poppler-data\\go29527_acrf_test.html"
+tfile="C:\\Users\\lius39\\Documents\\Code\\pdf2htmlEX-win32-0.14.6-upx-with-poppler-data\\go29527_acrf_testing.html"
 lines=open(tfile,'r').readlines()
 flen=len(lines)
 p11=re.compile(r'(<div class=")(\w) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+)(">)')
 import csv
-with open("C:\\Users\\liusi\\Desktop\\test.csv") as csvfile:
+with open("C:\\Users\\lius39\\Documents\\project\\GO29527\\entimICE\\doc\\acrf.csv") as csvfile:
     readCSV = csv.reader(csvfile, delimiter = ',')
     for row in readCSV:
-        a=row[0]
-        b=row[1]
+        a=row[1]
+        b=row[2]
         searchl='(<div class=["|\w|\s|\d]+>)('+a+')((</*span[\s|\w|=|_|"]*>[\s|\w|=]*)+)(</div>)'
         for i in range(flen):
             for m in re.finditer(searchl, lines[i]):
