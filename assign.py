@@ -1,74 +1,20 @@
-"""import csv
-with open("C:\\Users\\lius39\\Desktop\\test.csv") as csvfile:
-    readCSV = csv.reader(csvfile, delimiter = ',')
-    for row in readCSV:
-        print(row[0])
-        
-        
-import re        
-def modifyip(tfile,sstr,rstr):
-    try:
-        lines=open(tfile,'r').readlines()
-        flen=len(lines)
-        for i in range(flen):
-            if sstr in lines[i]:
-                lines[i]=lines[i].replace(sstr,rstr)
-        open(tfile,'w').writelines(lines)
-    except Exception as e:
-        print(e)
-
-modifyip("C:\\Users\\lius39\\Documents\\Code\\test.txt","and","A111")"""
-
-"""
 import re
-text = '<div class=\"t m0 xc h2 y14 ff1 fs0 fc0 sc0 ls0 ws0\">SITE<span class=\"_ _43\"> </span>Site<span class=\"_ _26"> </span>BRAIN =</div>'
-m = re.search('(<div class=\"t)\s(\w+)\s(\w+)\s(\w+)\s(\w+)\s(\w+)\s(\w+)\s(\w+)\s(\w+)\s(\w+)\s(\w+)\">(\w+)<(.*)(</div>)', text)
-if m:
-    fp = m.group(1)
-    fend = m.group(14)
-    rstr = m.group(1) + ' ' + m.group(2) + ' ' + m.group(3) + ' ' + m.group(4) + ' ' + m.group(5) + ' ' + m.group(6) + ' ' + m.group(7) 
-    print(rstr)
-"""
-
-
-"""
-import re
-text = '<div class=\"t m0 xc h2 y14 ff1 fs0 fc0 sc0 ls0 ws0\">SITE<span class=\"_ _43\"> </span>Site<span class=\"_ _26"> </span>BRAIN =</div>'
-m = re.search('(<div class=["|\w|\s|\d]+>)([\s|\w\d]+)((</*span[\s|\w|=|_|"]*>[\s|\w|=]*)+)(</div>)', text)
-if m:
-    p1=m.group(1)
-    p2=m.group(2)
-    p3=m.group(3)
-    p4=m.group(4)
-    p5=m.group(5)
-    print(p1)
-    print(p2)
-    print(p3)
-    print(p4)
-    print(p5)
-    print(p1+p2+p3+p5)"""
-    
-   
-import re
-lines=open("C:\\Users\\lius39\\Documents\\Code\\test.txt",'r').readlines()
+tfile="C:\\Users\\liusi\\Documents\\Code\\pdf2htmlEX-win32-0.14.6-upx-with-poppler-data\\go29527_acrf_test.html"
+lines=open(tfile,'r').readlines()
 flen=len(lines)
 p11=re.compile(r'(<div class=")(\w) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+)(">)')
-"""def func(m):
-    return m.group(1)+' '+m.group(2)+' '+m.group(3)+' '+m.group(4)+' '+m.group(4)+' '+m.group(6)+' '+m.group(7)+' '+m.group(8)+' '+m.group(9)+' '+m.group(10)+' '+m.group(11)+' '+m.group(12)+m.group(13)"""    
-for i in range(flen):
-    for m in re.finditer('(<div class=["|\w|\s|\d]+>)([\s|\w\d]+)((</*span[\s|\w|=|_|"]*>[\s|\w|=]*)+)(</div>)', lines[i], re.S):
-        p1=m.group(1)
-        p2=m.group(2)
-        p3=m.group(3)
-        p4=m.group(4)
-        p5=m.group(5)
-        aa=re.search(p11,p1)
-        p6=aa.group(1)
-        print(p6)
-
-        
-        
-        
-        
-        
-        
+import csv
+with open("C:\\Users\\liusi\\Desktop\\test.csv") as csvfile:
+    readCSV = csv.reader(csvfile, delimiter = ',')
+    for row in readCSV:
+        a=row[0]
+        b=row[1]
+        searchl='(<div class=["|\w|\s|\d]+>)('+a+')((</*span[\s|\w|=|_|"]*>[\s|\w|=]*)+)(</div>)'
+        for i in range(flen):
+            for m in re.finditer(searchl, lines[i]):
+                sstr=m.group(1)+m.group(2)+m.group(3)+m.group(5)
+                m1=re.search(p11,m.group(1))
+                p1=m1.group(1)+m1.group(2)+' '+m1.group(3)+' '+'x8'+' '+m1.group(5)+' '+m1.group(6)+' '+m1.group(7)+' '+m1.group(8)+' '+m1.group(9)+' '+m1.group(10)+' '+m1.group(11)+' '+m1.group(12)+m1.group(13)+b+'</div>'
+                rstr=sstr+p1
+                lines[i]=lines[i].replace(sstr,rstr)
+open(tfile,'w').writelines(lines)
